@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 13:05:10 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:45:05 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,41 +81,6 @@ static int	check_lvl_arg(t_lvl *level, char *line)
 	free(args);
 	level->textures[tex_type].image.type = IMAGE;
 	return (0);
-}
-
-static void	print_level(t_lvl *level)
-{
-	char	**map;
-	char	form[100];
-	int		i;
-	int		j;
-
-	map = level->map;
-	form['0'] = ' ';
-	form['1'] = '#';
-	form['2'] = '2';
-	form['3'] = '3';
-	form['N'] = '^';
-	form['S'] = 'v';
-	form['E'] = '>';
-	form['W'] = '<';
-	form[' '] = ' ';
-	i = 0;
-	while (map[i])
-	{
-		printf("[MAP] (line %02d) (%03ld), ", i, ft_strlen(map[i]));
-		j = 0;
-		while (map[i][j])
-		{
-			if (ft_isspace(map[i][j]))
-				map[i][j] = '0';
-			printf("%c", form[(int)map[i][j]]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	
 }
 
 int	load_level(t_lvl *level, char *level_file)

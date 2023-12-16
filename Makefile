@@ -1,4 +1,4 @@
-SRCS=main level/load_level
+SRCS=main level/load_level level/print_level
 NB := $(words $(SRCS))
 CUR = 0
 SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
