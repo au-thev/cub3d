@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:39:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/14 14:29:17 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:49:55 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ struct s_lvl
 	int		fd;
 };
 
-int	load_level(t_lvl *level, char *level_file);
+int		load_level(t_lvl *level, char *level_file);
+void	print_level(t_lvl *level);
 
 #endif
