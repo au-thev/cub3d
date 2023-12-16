@@ -6,9 +6,11 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 14:14:47 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 14:47:30 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:52:00 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "level.h"
 
 static char	get_map_char(char c)
 {
