@@ -6,11 +6,12 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 14:14:47 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 14:53:22 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:54:19 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "level.h"
+#include <stdio.h>
 
 static char	get_map_char(char c)
 {
@@ -25,7 +26,7 @@ static char	get_map_char(char c)
 	form['E'] = '>';
 	form['W'] = '<';
 	form[' '] = ' ';
-	return (form[c])
+	return (form[c]);
 }
 
 void	print_level(t_lvl *level)
