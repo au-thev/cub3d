@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 11:02:17 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 13:05:10 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ static int	parse_map(t_lvl *level, char *line)
 		return (1);
 	i = 0;
 	line = line_addr;
-	level->map = ft_calloc(++i + 1, sizeof(line));
-	level->map[i - 1] = line;
+	level->map = ft_calloc(i + 1, sizeof(line));
+	level->map[i++] = line;
 	while (line)
 	{
 		map_swap = level->map;
 		level->map = ft_calloc(i + 1, sizeof(line));
-		ft_memmove(level->map, map_swap, i);
+		ft_memmove(level->map, map_swap, (i) * sizeof(line));
 		free(map_swap);
-	printf("[parse_map()] [line no: %d] %s\n", i-1, line);
-		level->map[i - 1] = ft_readline(level->fd);
-		line = level->map[i++ - 1];
+//	printf("[parse_map()] [line no: %d] %s\n", i, line);
+		level->map[i] = ft_readline(level->fd);
+		line = level->map[i++];
 	}
+	map_swap = level->map;
+	level->map = ft_calloc(i + 1, sizeof(line));
+	ft_memmove(level->map, map_swap, (i) * sizeof(line));
 	level->map[i] = 0;
-	printf("[parse_map()] [line no max: %d]\n", i);
+//	printf("[parse_map()] [line no max: %d]\n", i);
 	return (2);
 }
 
@@ -83,10 +86,34 @@ static int	check_lvl_arg(t_lvl *level, char *line)
 static void	print_level(t_lvl *level)
 {
 	char	**map;
+	char	form[100];
+	int		i;
+	int		j;
+
 	map = level->map;
-	while (map)
+	form['0'] = ' ';
+	form['1'] = '#';
+	form['2'] = '2';
+	form['3'] = '3';
+	form['N'] = '^';
+	form['S'] = 'v';
+	form['E'] = '>';
+	form['W'] = '<';
+	form[' '] = ' ';
+	i = 0;
+	while (map[i])
 	{
-		printf("%s", *map++);
+		printf("[MAP] (line %02d) (%03ld), ", i, ft_strlen(map[i]));
+		j = 0;
+		while (map[i][j])
+		{
+			if (ft_isspace(map[i][j]))
+				map[i][j] = '0';
+			printf("%c", form[(int)map[i][j]]);
+			j++;
+		}
+		printf("\n");
+		i++;
 	}
 	
 }
@@ -108,12 +135,13 @@ int	load_level(t_lvl *level, char *level_file)
 		line = ft_readline(level->fd);
 		if(!line)
 			break ;
-		printf("%s\n", line);
-		check_lvl_arg(level, line);
+		if (check_lvl_arg(level, line))
+			if (parse_map(level, line))
+				break;
 		//if (ft_strlen(line) && ft_strchr(line, ' '))
 		//if (check_lvl_arg(level, line))
 		//	break ;
 	}
-//	print_level(level);
+	print_level(level);
 	return (0);
 }
