@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 14:14:47 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 14:52:00 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 14:53:22 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_level(t_lvl *level)
 		{
 			if (ft_isspace(map[i][j]))
 				map[i][j] = '0';
-			printf("%c", get_map_char(map[i][j]]));
+			printf("%c", get_map_char(map[i][j]));
 			j++;
 		}
 		printf("\n");
