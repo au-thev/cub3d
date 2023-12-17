@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:39:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 21:21:31 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:43:04 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct s_lvl
 {
 	t_tex	textures[6];
 	char	**map;
+	int		map_length;
 	int		fd;
 };
 

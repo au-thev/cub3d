@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.h                                          :+:      :+:    :+:   */
+/*   unload_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 19:26:57 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/17 19:34:42 by antheven         ###   ########.fr       */
+/*   Created: 2023/12/17 19:29:38 by antheven          #+#    #+#             */
+/*   Updated: 2023/12/17 19:54:17 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPLAY_H
-# define DISPLAY_H
+#include "display.h"
+#include "mlx.h"
+#include <stdlib.h>
 
-#include "level.h"
-
-typedef	struct s_display	t_display;
-
-struct s_display
+void	unload_game(t_display *display)
 {
-	void	*ptr;
-	void	*win_ptr;
-	t_lvl	level;
-};
-
-int		load_textures(t_display *display);
-void	unload_level(t_display *display);
-void	unload_game(t_display *display);
-
-#endif
+	unload_level(display);
+	mlx_destroy_display(display->ptr);
+	free(display->ptr);
+}

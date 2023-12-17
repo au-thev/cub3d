@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/17 10:29:51 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:51:46 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int	parse_map(t_lvl *level, char *line)
 	level->map[i++] = line;
 	while (!map_add(level, i++, ft_readline(level->fd)))
 		;
+	map_add(level, i++, 0);
+	level->map_length = i;
 	return (2);
 }
 
@@ -77,6 +79,7 @@ static int	check_lvl_arg(t_lvl *level, char *line)
 	if (!(ft_strlen(line) && ft_strchr(line, ' ') && *line != ' '))
 		return (1);
 	args = ft_split(line, ' ');
+	free(line);
 	tex_type = get_token_type(args[0]);
 	if (tex_type == TEX_NB)
 		return (1);
@@ -100,8 +103,7 @@ int	load_level(t_lvl *level, char *level_file)
 		perror("open()");
 		return (1);
 	}
-	line = ft_calloc(1, 1);
-	*line = 1;
+	line = (char *)1;
 	while (line)
 	{
 		line = ft_readline(level->fd);
@@ -110,6 +112,7 @@ int	load_level(t_lvl *level, char *level_file)
 		if (check_lvl_arg(level, line))
 			if (parse_map(level, line))
 				break ;
+		// free(line);
 	}
 	return (0);
 }
