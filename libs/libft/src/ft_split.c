@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:25:30 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 10:58:57 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/17 11:34:50 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**ft_split(char const *s, char c)
 	if (!*s)
 		return (0);
 	str = ft_strdup(s);
-	tab = ft_calloc((count_words(s, c) + 1),  sizeof(char *));
+	tab = ft_calloc((count_words(s, c) + 1), sizeof(char *));
 	*tab = str;
 	i = 0;
 	while (ft_strchr(str, c))

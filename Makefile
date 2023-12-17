@@ -34,4 +34,8 @@ libft:
 mlx:
 	@make -C libs/minilibx-linux
 
+norm:
+	norminette libs/libft
+	norminette src/
+
 re: fclean all

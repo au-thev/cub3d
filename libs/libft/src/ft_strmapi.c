@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:10:57 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/10 17:17:38 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/17 11:34:15 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		i++;
 	}
 	return (str);
-
 }
