@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:47:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/14 10:43:10 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:47:14 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define IMAGES_H
 
 typedef	struct s_image	t_image;
-typedef	struct s_color	t_color;
+typedef	enum e_color	t_color;
 typedef	enum e_img_type	t_img_type;
+typedef	enum e_size	t_size;
 
 enum e_img_type
 {
@@ -31,11 +32,18 @@ enum e_color
 	B
 };
 
+enum e_size
+{
+	WIDTH,
+	HEIGHT
+};
+
 
 struct s_image
 {
 	t_img_type	type;
-	char		color[4];
+	int			color[4];
+	int			size[2];
 	void		*ptr;
 	char		*data;
 	int			bits_per_pixel;
