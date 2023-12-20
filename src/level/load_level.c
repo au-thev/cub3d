@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/17 19:51:46 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/20 03:51:56 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,29 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-static int	map_add(t_lvl *level, int i, char *line)
+void	check_for_player(t_lvl *level, char *line, int i)
 {
-	char	**map_swap;
-
-	map_swap = level->map;
-	level->map = ft_calloc(i + 1, sizeof(line));
-	ft_memmove(level->map, map_swap, (i) * sizeof(line));
-	level->map[i] = line;
-	free(map_swap);
-	if (line == 0)
-		return (1);
-	return (0);
-}
-
-static int	parse_map(t_lvl *level, char *line)
-{
-	char	*line_addr;
-	int		i;
-
-	line_addr = line;
-	if (ft_isspace(*line))
-		while (ft_isspace(*line++))
-			;
-	if (!ft_isdigit(*line))
-		return (1);
-	i = 0;
-	line = line_addr;
-	level->map = ft_calloc(i + 1, sizeof(line));
-	level->map[i++] = line;
-	while (!map_add(level, i++, ft_readline(level->fd)))
-		;
-	map_add(level, i++, 0);
-	level->map_length = i;
-	return (2);
+	if (ft_strchr(line, 'N'))
+	{
+		level->player_start.y = i;
+		level->player_start.x = ft_strchr(line, 'N') - line - 1;
+	}
+	if (ft_strchr(line, 'S'))
+	{
+		level->player_start.y = i;
+		level->player_start.x = ft_strchr(line, 'S') - line - 1;
+	}
+	if (ft_strchr(line, 'E'))
+	{
+		level->player_start.y = i;
+		level->player_start.x = ft_strchr(line, 'E') - line - 1;
+	}
+	if (ft_strchr(line, 'W'))
+	{
+		level->player_start.y = i;
+		level->player_start.x = ft_strchr(line, 'W') - line - 1;
+	}
+	printf("Player Y=%d, X=%d\n", level->player_start.y, level->player_start.x);
 }
 
 static t_tex_type	get_token_type(char *s)
@@ -98,6 +87,7 @@ int	load_level(t_lvl *level, char *level_file)
 	char	*line;
 
 	level->fd = open(level_file, O_RDONLY);
+	level->map_width = 0;
 	if (level->fd < 0)
 	{
 		perror("open()");
@@ -112,7 +102,7 @@ int	load_level(t_lvl *level, char *level_file)
 		if (check_lvl_arg(level, line))
 			if (parse_map(level, line))
 				break ;
-		// free(line);
 	}
+	fit_level(level);
 	return (0);
 }

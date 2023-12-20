@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.h                                          :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 19:26:57 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/19 21:45:00 by antheven         ###   ########.fr       */
+/*   Created: 2023/12/20 03:38:41 by antheven          #+#    #+#             */
+/*   Updated: 2023/12/20 03:48:54 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPLAY_H
-# define DISPLAY_H
+#include "level.h"
+#include "libft.h"
+#include <stdio.h>
 
-# include "level.h"
-
-typedef struct s_display	t_display;
-
-struct s_display
+int	check_map(t_lvl *level)
 {
-	void	*ptr;
-	void	*win_ptr;
-	t_lvl	level;
-};
+	int	y;
 
-int		load_textures(t_display *display);
-void	unload_level(t_display *display);
-void	unload_game(t_display *display);
-
-#endif
+	y = 0;
+	while (y < level->map_length)
+	{
+		if (ft_strchr(level->map[y], '*'))
+		{
+			printf("Map not enclosed at line %d\n", y);
+			return (1);
+		}
+		y++;
+	}
+	return (0);
+}

@@ -1,4 +1,13 @@
-SRCS=main level/load_level level/print_level level/load_textures level/unload_level game/unload_game
+SRCS=main \
+level/load_level \
+level/fit_level \
+level/map_add \
+level/parse_map \
+level/check_map \
+level/print_level \
+level/load_textures \
+level/unload_level \
+game/unload_game
 NB := $(words $(SRCS))
 CUR = 0
 SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
