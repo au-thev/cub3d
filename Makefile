@@ -1,4 +1,5 @@
 SRCS=main \
+level/feed_level \
 level/load_level \
 level/fit_level \
 level/map_add \

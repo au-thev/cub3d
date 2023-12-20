@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 19:26:57 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/19 21:45:00 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/20 08:31:58 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ struct s_display
 	t_lvl	level;
 };
 
+int		feed_level(t_display *display, char *level_file);
 int		load_textures(t_display *display);
 void	unload_level(t_display *display);
 void	unload_game(t_display *display);

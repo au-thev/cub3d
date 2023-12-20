@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:19:10 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/20 03:55:08 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/20 08:44:25 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,9 @@ int	main(int argc, char **argv)
 {
 	t_display	display;
 
-	if (argc == 1)
+	if (argc != 2)
 		return (1);
 	display.ptr = mlx_init();
-	load_level(&display.level, argv[1]);
-	print_level(&display.level);
-	load_textures(&display);
-	if (check_map(&display.level))
-	{
+	if (feed_level(&display, argv[1]))
 		unload_game(&display);
-		return (1);
-	}
-	// parser chaque ligne du fichier
-	// pour la map, verifier son contour (=1)
-	// unload all allocated textures and structs
-	unload_game(&display);
 }
