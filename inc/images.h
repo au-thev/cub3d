@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:47:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/19 21:46:01 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:24:21 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_image	t_image;
 typedef enum e_color	t_color;
 typedef enum e_img_type	t_img_type;
 typedef enum e_size		t_size;
+typedef struct s_line	t_line;
 
 enum e_img_type
 {
@@ -38,6 +39,12 @@ enum e_size
 	HEIGHT
 };
 
+struct s_line
+{
+	int	start;
+	int	end;
+};
+
 struct s_image
 {
 	t_img_type	type;
@@ -49,5 +56,8 @@ struct s_image
 	int			size_line;
 	int			endian;
 };
+
+void	pixel_put(t_image *data, int x, int y, int color);
+void	v_line(t_image *img, int x, t_line bounds, int color);
 
 #endif

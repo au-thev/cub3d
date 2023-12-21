@@ -8,6 +8,10 @@ level/check_map \
 level/print_level \
 level/load_textures \
 level/unload_level \
+window/pixel_put \
+window/v_line \
+window/new_window \
+game/loop \
 game/unload_game
 NB := $(words $(SRCS))
 CUR = 0

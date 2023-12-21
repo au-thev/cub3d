@@ -6,21 +6,33 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:19:10 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/20 08:44:25 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:23:36 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 #include "level.h"
 #include "display.h"
 #include "mlx.h"
 
 int	main(int argc, char **argv)
 {
-	t_display	display;
+	t_game		game;
 
 	if (argc != 2)
 		return (1);
-	display.ptr = mlx_init();
-	if (feed_level(&display, argv[1]))
-		unload_game(&display);
+	game.display.ptr = mlx_init();
+	new_window(&game.display);
+	mlx_string_put(game.display.ptr, game.display.win.ptr, 106, 106, 0x0,
+		"Loading game...");
+	if (feed_level(&game.display, argv[1]))
+	{
+		unload_game(&game.display);
+		return (1);
+	}
+	mlx_clear_window(game.display.ptr, game.display.win.ptr);
+	mlx_loop_hook(game.display.ptr, loop, &game);
+	mlx_loop(game.display.ptr);
+	unload_game(&game.display);
+	return (0);
 }
