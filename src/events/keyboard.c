@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 10:07:55 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/27 07:34:23 by antheven         ###   ########.fr       */
+/*   Created: 2023/12/27 07:19:43 by antheven          #+#    #+#             */
+/*   Updated: 2023/12/27 07:37:20 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "game.h"
+#include "events.h"
 
-# include "display.h"
-# include "events.h"
-
-typedef struct s_game	t_game;
-
-struct s_game
+int	kb_init(t_game *game)
 {
-	t_display	display;
-	t_events	events;
-};
+	int	keycode = 65535;
+	while (keycode-- > 0)
+		game->events.keys[keycode] = 0;
+}
 
-int	loop(void *param);
+int	kb_down(int keycode, t_game *game)
+{
+	game->events.keys[keycode] = 1;
+}
 
-#endif
+int	kb_up(int keycode, t_game *game)
+{
+	game->events.keys[keycode] = 0;
+}
