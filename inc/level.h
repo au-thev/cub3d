@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:39:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/20 08:41:36 by antheven         ###   ########.fr       */
+/*   Updated: 2023/12/29 15:06:45 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ struct s_tex
 
 struct s_location
 {
-	int	y;
-	int	x;
+	double	y;
+	double	x;
 };
 
 struct s_lvl
