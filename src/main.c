@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	game.display.ptr = mlx_init();
+	game.display.fov = 60; // TEMP
 	new_window(&game.display);
 	mlx_string_put(game.display.ptr, game.display.win.ptr, 106, 106, 0x0,
 		"Loading game...");

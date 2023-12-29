@@ -17,7 +17,7 @@
 
 typedef struct s_lvl		t_lvl;
 typedef struct s_tex		t_tex;
-typedef struct s_location	t_location;
+typedef struct s_point		t_point;
 typedef enum e_tex			t_tex_type;
 
 enum e_tex
@@ -39,7 +39,7 @@ struct s_tex
 	t_image		image;
 };
 
-struct s_location
+struct s_point
 {
 	double	y;
 	double	x;
@@ -51,7 +51,7 @@ struct s_lvl
 	char		**map;
 	int			map_length;
 	int			map_width;
-	t_location	player_start;
+	t_point	player_start;
 	int			fd;
 	char		loaded;
 };
