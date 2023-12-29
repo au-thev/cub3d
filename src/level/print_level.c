@@ -98,9 +98,9 @@ static char	get_map_char(char c)
 
 void	print_level(t_lvl *level)
 {
-	char	**map;
-	int		i;
-	int		j;
+	char		**map;
+	int			i;
+	size_t		j;
 
 	map = level->map;
 	i = 0;

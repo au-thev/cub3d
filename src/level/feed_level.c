@@ -22,7 +22,7 @@ int	feed_level(t_display *display, char *level_file)
 	level_file_size = ft_strlen(level_file);
 	if (ft_strncmp((level_file + level_file_size - 5), ".cub", 4))
 	{
-		printf("Level file name must terminate with '.cub'.\n");
+		printf("Level file name must end with '.cub'.\n");
 		return (1);
 	}
 	load_level(&display->level, level_file);
