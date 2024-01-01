@@ -1,4 +1,5 @@
 SRCS=main \
+utils/deg_to_rad \
 level/feed_level \
 level/load_level \
 level/fit_level \
@@ -12,6 +13,7 @@ window/pixel_put \
 window/v_line \
 window/new_window \
 game/loop \
+game/load_game \
 game/unload_game
 NB := $(words $(SRCS))
 CUR = 0

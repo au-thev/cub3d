@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 10:07:55 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 09:01:08 by antheven         ###   ########.fr       */
+/*   Created: 2024/01/01 08:39:46 by antheven          #+#    #+#             */
+/*   Updated: 2024/01/01 08:46:58 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#ifndef UTILS_H
+# define UTILS_H
 
-# include "display.h"
-# include "events.h"
-# include "entity.h"
-
-typedef struct s_game	t_game;
-
-struct s_game
-{
-	t_display	display;
-	t_events	events;
-	t_entity	player;
-};
-
-int	loop(void *param);
-int	load_game(t_game *game);
+double	deg_to_rad(double d);
 
 #endif

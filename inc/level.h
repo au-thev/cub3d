@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:39:19 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/29 15:06:45 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/01 08:45:56 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ struct s_lvl
 	char		**map;
 	int			map_length;
 	int			map_width;
-	t_point	player_start;
+	t_point		player_start;
 	int			fd;
 	char		loaded;
 };

@@ -14,7 +14,7 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 
 	completion = 0;
 	max_iter = 200; //TODO: find default value
-	dda = ft_calloc(1, sizeof(dda));
+	dda = ft_calloc(1, sizeof(*dda));
 	camera = 2 * ray / game->display.win.size[WIDTH] - 1;
 	ray_dir.x = dir_vector.x + plane.x * camera;
 	ray_dir.y = dir_vector.y + plane.y * camera;

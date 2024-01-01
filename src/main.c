@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:19:10 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/21 10:23:36 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/01 09:00:20 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 		unload_game(&game.display);
 		return (1);
 	}
+	load_game(&game);
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
 	mlx_loop_hook(game.display.ptr, loop, &game);
 	mlx_loop(game.display.ptr);

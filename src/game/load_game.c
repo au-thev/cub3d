@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   load_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 10:07:55 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 09:01:08 by antheven         ###   ########.fr       */
+/*   Created: 2024/01/01 08:52:38 by antheven          #+#    #+#             */
+/*   Updated: 2024/01/01 08:59:19 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "game.h"
 
-# include "display.h"
-# include "events.h"
-# include "entity.h"
-
-typedef struct s_game	t_game;
-
-struct s_game
+enum	e_direction
 {
-	t_display	display;
-	t_events	events;
-	t_entity	player;
+	D_NO=270,
+	D_SO=90,
+	D_EA=0,
+	D_WE=180
 };
 
-int	loop(void *param);
-int	load_game(t_game *game);
-
-#endif
+int	load_game(t_game *game)
+{
+	game->player.location = (t_point){1, 1};
+	game->player.direction = D_SO; // To define N,S,E,O from player start look direction
+}
