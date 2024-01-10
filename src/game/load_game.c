@@ -24,4 +24,6 @@ int	load_game(t_game *game)
 {
 	game->player.location = (t_point){1, 1};
 	game->player.direction = D_SO; // To define N,S,E,O from player start look direction
+	
+	return (0);
 }

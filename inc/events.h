@@ -31,8 +31,8 @@ struct s_events
 {
 	int	keys[25565];
 	int	mouse_btn;
-	t_location	click_pos;
-	t_location	move_pos;
+	// t_location	click_pos;
+	// t_location	move_pos;
 };
 
 int	kb_init(t_game *game);

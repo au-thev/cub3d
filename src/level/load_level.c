@@ -37,7 +37,7 @@ void	check_for_player(t_lvl *level, char *line, int i)
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'W') - line - 1;
 	}
-	printf("Player Y=%d, X=%d\n", level->player_start.y, level->player_start.x);
+	//printf("Player Y=%d, X=%d\n", level->player_start.y, level->player_start.x);
 }
 
 static t_tex_type	get_token_type(char *s)

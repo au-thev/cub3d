@@ -14,6 +14,9 @@
 #include "level.h"
 #include "display.h"
 #include "mlx.h"
+#include "engine.h"
+#include <stdio.h>
+
 
 int	main(int argc, char **argv)
 {
@@ -33,7 +36,11 @@ int	main(int argc, char **argv)
 	}
 	load_game(&game);
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
-	mlx_loop_hook(game.display.ptr, loop, &game);
+	// mlx_loop_hook(game.display.ptr, loop, &game);
+	printf("Entering raycast :\n");
+	// mlx_loop_hook(game.display.ptr, operate_raycast, &game);
+	operate_raycast(&game);
+	printf("Quit raycast :\n");
 	mlx_loop(game.display.ptr);
 	unload_game(&game.display);
 	return (0);
