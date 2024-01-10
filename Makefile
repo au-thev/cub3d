@@ -54,4 +54,5 @@ norm:
 	norminette libs/libft
 	norminette src/
 
-re: fclean all
+re: fclean
+	@make all

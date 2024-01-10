@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/20 03:51:56 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:50:05 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	check_for_player(t_lvl *level, char *line, int i)
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'W') - line - 1;
 	}
-	printf("Player Y=%d, X=%d\n", level->player_start.y, level->player_start.x);
+	printf("Player Y=%f, X=%f\n", level->player_start.y, level->player_start.x);
 }
 
 static t_tex_type	get_token_type(char *s)

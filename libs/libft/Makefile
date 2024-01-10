@@ -30,5 +30,6 @@ fclean: clean
 	@$(RM) -rf $(NAME)
 	@echo Cleaning library
 
-re: fclean all
+re: fclean 
+	@make -s all
  

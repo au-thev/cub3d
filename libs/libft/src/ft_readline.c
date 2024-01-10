@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:09:23 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/16 12:41:05 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:28:31 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ char	*ft_readline(int fd)
 	while (i > 0)
 	{
 		i = read(fd, buffer, 1);
+		if (*buffer == '\n')// || i == 0)
+			break ;
 		if (i <= 0)
 		{
 			free(buffer);
 			free(cache);
 			return (NULL);
 		}
-		if (*buffer == '\n' || *buffer == '\0')
-			break ;
 		swap = ft_strjoin(cache, buffer);
 		free(cache);
 		cache = swap;

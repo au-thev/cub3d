@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 07:18:07 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/27 07:55:14 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:49:34 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ struct s_events
 {
 	int	keys[25565];
 	int	mouse_btn;
-	t_location	click_pos;
-	t_location	move_pos;
+	t_point	click_pos;
+	t_point	move_pos;
 };
 
 int	kb_init(t_game *game);
