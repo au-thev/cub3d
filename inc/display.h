@@ -22,7 +22,7 @@ typedef struct s_win		t_win;
 struct s_win
 {
 	void	*ptr;
-	int		size[2];
+	double		size[2];
 	t_image	buffer;
 
 };
@@ -32,7 +32,7 @@ struct s_display
 	void	*ptr;
 	t_win	win;
 	t_lvl	level;
-	int		fov;
+	double		fov;
 };
 
 int		feed_level(t_display *display, char *level_file);

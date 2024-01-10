@@ -15,9 +15,12 @@ struct s_dda
 	t_point		delta_dist;
 	t_point		side_dist;
 	t_point		step;
+	double		distance;
+	int			side;
 };
 
-int	operate_raycast(t_game *game);
+int		operate_raycast(t_game *game);
 t_dda	dda_ray(t_game *game, t_point plane, t_point dir_vector, int ray);
+void	render_ray(t_game *game, t_dda *dda, int ray);
 
 #endif

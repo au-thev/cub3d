@@ -14,12 +14,16 @@ window/v_line \
 window/new_window \
 game/loop \
 game/load_game \
-game/unload_game
+game/unload_game \
+engine/dda \
+engine/raycasting \
+engine/render \
+
 NB := $(words $(SRCS))
 CUR = 0
 SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
 OBJ=$(SRC:.c=.o)
-FLAGS=-Wall -Wextra -Werror -I inc -L libs/libft -L libs/minilibx-linux -lft -lmlx -lX11 -lXext -g3 # -Werror
+FLAGS=-Wall -Wextra -Werror -I inc -L libs/libft -L libs/minilibx-linux -lft -lmlx -lX11 -lXext -g3 -lm# -Werror
 NAME=cub3d
 
 all: mlx libft $(NAME)
