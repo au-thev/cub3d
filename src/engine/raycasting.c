@@ -1,6 +1,7 @@
 #include "game.h"
 #include "engine.h"
 #include <stdio.h> 
+#include "mlx.h"
 
 //On-key triggered, operates (resolution_pixel_width) iterations
 //rendering the latest plan view according to game state
@@ -27,5 +28,6 @@ int	operate_raycast(t_game *game)
 		//render_ray(game, dda);
 		curr_ray++;
 	}
+	mlx_put_image_to_window(game->display.ptr, game->display.win.ptr, game->display.win.buffer.ptr, 0, 0);
 	return (0);
 }

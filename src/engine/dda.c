@@ -91,14 +91,14 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 	ray_dir.y = dir_vector.y + plane.y * camera;
 	dda->start = game->display.level.player_start;
 	dda->end = game->display.level.player_start;
-	printf("///////////////////\n");
-	printf("camera : %f \n", camera);
-	printf("ray_dir.x : %f \n", ray_dir.x);
-	printf("ray_dir.y : %f \n", ray_dir.y);
-	printf("dir_vector.x : %f \n", dir_vector.x);
-	printf("dir_vector.y : %f \n", dir_vector.y);
-	printf("plane.x : %f \n", plane.x);
-	printf("plane.y : %f \n", plane.y);
+	// printf("///////////////////\n");
+	// printf("camera : %f \n", camera);
+	// printf("ray_dir.x : %f \n", ray_dir.x);
+	// printf("ray_dir.y : %f \n", ray_dir.y);
+	// printf("dir_vector.x : %f \n", dir_vector.x);
+	// printf("dir_vector.y : %f \n", dir_vector.y);
+	// printf("plane.x : %f \n", plane.x);
+	// printf("plane.y : %f \n", plane.y);
 	compute_delta_dist(dda, ray_dir);
 	while (!completion) {
 		if (dda->side_dist.x < dda->side_dist.y) {
@@ -115,7 +115,7 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 			completion = 1;
 		max_iter--;
 	}
-	print_level_custom(game->display.level, dda->end);
+	// print_level_custom(game->display.level, dda->end);
 	render_ray(game, dda, ray);
 	return (*dda);
 }

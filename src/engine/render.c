@@ -20,10 +20,15 @@ void render_ray(t_game *game, t_dda *dda, int ray)
 	drawEnd = lineHeight / 2 + game->display.win.size[HEIGHT] / 2;
 	if(drawEnd >= game->display.win.size[HEIGHT])
 		drawEnd = game->display.win.size[HEIGHT] - 1;
-	i = drawStart;
+	i = 0;
+	while (i < drawStart)
+		pixel_put(&game->display.win.buffer, ray, i++, 0x0);
+	// i = drawStart;
 	while (i < drawEnd)
 	{
-		mlx_pixel_put(game->display.ptr, game->display.win.ptr, ray, i, 0xFFFFFF);
+		pixel_put(&game->display.win.buffer, ray, i, 0xFFFFFF);
 		i++;
 	}
+	while (i < game->display.win.size[HEIGHT])
+		pixel_put(&game->display.win.buffer, ray, i++, 0x0);
 }

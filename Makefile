@@ -23,7 +23,7 @@ NB := $(words $(SRCS))
 CUR = 0
 SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
 OBJ=$(SRC:.c=.o)
-FLAGS=-Wall -Wextra -Werror -I inc -L libs/libft -L libs/minilibx-linux -lft -lmlx -lX11 -lXext -g3 -lm# -Werror
+FLAGS=-Wall -Wextra -I inc -L libs/libft -L libs/minilibx-linux -lft -lmlx -lX11 -lXext -g3 -lm# -Werror
 NAME=cub3d
 
 all: mlx libft $(NAME)
