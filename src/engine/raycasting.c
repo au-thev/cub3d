@@ -2,6 +2,8 @@
 #include "engine.h"
 #include <stdio.h> 
 #include "mlx.h"
+#include "utils.h"
+#include <math.h>
 
 //On-key triggered, operates (resolution_pixel_width) iterations
 //rendering the latest plan view according to game state
@@ -13,14 +15,15 @@ int	operate_raycast(t_game *game)
 	int		curr_ray;
 
 	curr_ray = 0;
-	plane.x = 0;
-	plane.y = -game->display.fov / 100;
+	plane.x = -sin(deg_to_rad(game->player.direction));
+	plane.y = cos(deg_to_rad(game->player.direction));//-game->display.fov / 100;
 	// W = vector : -1 / 0  | plane : 0 / -0.66
 	// E = vector : 1 / 0  | plane : 0 / 0.66
 	// N = vector : 0 / -1  | plane : 0.66 / 0
 	// S = vector : 0 / 1  | plane : -0.66 / 0
-	dir_vector.x = -1;
-	dir_vector.y = 0;
+	// printf("Player Direction: %f\n", deg_to_rad(game->player.direction));
+	dir_vector.x = cos(deg_to_rad(game->player.direction));
+	dir_vector.y = sin(deg_to_rad(game->player.direction));
 	while (curr_ray < game->display.win.size[WIDTH])
 	{
 		dda_ray(game, plane, dir_vector, curr_ray);
@@ -28,6 +31,5 @@ int	operate_raycast(t_game *game)
 		//render_ray(game, dda);
 		curr_ray++;
 	}
-	mlx_put_image_to_window(game->display.ptr, game->display.win.ptr, game->display.win.buffer.ptr, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 08:34:35 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 08:39:32 by antheven         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:48:02 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 double	deg_to_rad(double d)
 {
-	return(d * 180 / M_PI);
+	return(d * M_PI / 180);
 }

@@ -15,6 +15,9 @@ window/new_window \
 game/loop \
 game/load_game \
 game/unload_game \
+events/keyboard \
+events/mouse \
+events/register_events \
 engine/dda \
 engine/raycasting \
 engine/render \
