@@ -15,6 +15,8 @@ int	operate_raycast(t_game *game)
 	int		curr_ray;
 
 	curr_ray = 0;
+	// printf("starting coords  : %f | %f \n", game->display.level.player_start.x,
+	// game->display.level.player_start.y);
 	plane.x = -sin(deg_to_rad(game->player.direction));
 	plane.y = cos(deg_to_rad(game->player.direction));//-game->display.fov / 100;
 	// W = vector : -1 / 0  | plane : 0 / -0.66

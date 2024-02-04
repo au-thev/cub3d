@@ -116,7 +116,17 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 		max_iter--;
 	}
 	// print_level_custom(game->display.level, dda->end);
-	render_ray(game, dda, ray);
+	mlx_string_put(game->display.ptr, game->display.win.ptr, 500, 500, 0xFFFFFF, 
+	"Current coords x / y : ");
+	// printf("player_start.x : %f \n", game->display.level.player_start.x);
+	// printf("player_start.y : %f \n", game->display.level.player_start.y);
+	mlx_string_put(game->display.ptr, game->display.win.ptr, 500, 520, 0xFFFFFF, 
+	ft_itoa((int)game->display.level.player_start.x));
+	mlx_string_put(game->display.ptr, game->display.win.ptr, 530, 520, 0xFFFFFF, 
+	ft_itoa((int)game->display.level.player_start.y));
+	// game->display.level.player_start.x = floor(game->display.level.player_start.x);
+	// game->display.level.player_start.y = floor(game->display.level.player_start.y);
+	render_ray(game, dda, ray, ray_dir);
 	return (*dda);
 }
 

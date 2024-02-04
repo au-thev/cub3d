@@ -21,6 +21,6 @@ struct s_dda
 
 int		operate_raycast(t_game *game);
 t_dda	dda_ray(t_game *game, t_point plane, t_point dir_vector, int ray);
-void	render_ray(t_game *game, t_dda *dda, int ray);
+void	render_ray(t_game *game, t_dda *dda, int ray, t_point ray_dir);
 
 #endif

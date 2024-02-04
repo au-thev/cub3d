@@ -37,6 +37,8 @@ int	main(int argc, char **argv)
 	}
 	register_events(&game);
 	load_game(&game);
+	game.display.level.player_start.x = 26;
+	game.display.level.player_start.y = 3;
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
 	mlx_loop_hook(game.display.ptr, loop, &game);
 	// printf("Entering raycast :\n");
