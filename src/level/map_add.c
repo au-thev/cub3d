@@ -18,22 +18,22 @@ static void	check_for_player(t_lvl *level, char *line, int i)
 	if (ft_strchr(line, 'N'))
 	{
 		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'N') - line - 1;
+		level->player_start.x = ft_strchr(line, 'N') - line;
 	}
 	if (ft_strchr(line, 'S'))
 	{
 		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'S') - line - 1;
+		level->player_start.x = ft_strchr(line, 'S') - line;
 	}
 	if (ft_strchr(line, 'E'))
 	{
 		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'E') - line - 1;
+		level->player_start.x = ft_strchr(line, 'E') - line;
 	}
 	if (ft_strchr(line, 'W'))
 	{
 		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'W') - line - 1;
+		level->player_start.x = ft_strchr(line, 'W') - line;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   entity.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 08:46:36 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 08:51:23 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/20 00:57:45 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ struct s_entity
 	t_point	location;
 	double	direction;
 };
-
 
 #endif

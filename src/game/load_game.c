@@ -12,17 +12,9 @@
 
 #include "game.h"
 
-enum	e_direction
-{
-	D_NO=270,
-	D_SO=90,
-	D_EA=0,
-	D_WE=180
-};
-
 int	load_game(t_game *game)
 {
 	game->player.location = (t_point){1, 1};
-	game->player.direction = D_SO; // To define N,S,E,O from player start look direction
+	game->player.direction = D_SO;
 	return (0);
 }

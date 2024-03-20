@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   engine.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/20 00:58:21 by coltcivers        #+#    #+#             */
+/*   Updated: 2024/03/20 00:58:37 by coltcivers       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ENGINE_H
 # define ENGINE_H
 
@@ -5,8 +17,9 @@
 # include "images.h"
 # include "game.h"
 
-typedef struct s_point			t_point;
+typedef struct s_point	t_point;
 typedef struct s_dda	t_dda;
+typedef struct s_render	t_render;
 
 struct s_dda
 {
@@ -17,6 +30,15 @@ struct s_dda
 	t_point		step;
 	double		distance;
 	int			side;
+};
+
+struct s_render
+{
+	double		draw_start;
+	double		draw_end;
+	double		line_height;
+	int			ray;
+	int			i;
 };
 
 int		operate_raycast(t_game *game);
