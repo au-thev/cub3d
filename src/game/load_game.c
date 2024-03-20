@@ -22,7 +22,7 @@ enum	e_direction
 
 int	load_game(t_game *game)
 {
-	game->player.location = (t_point){1, 1};
+	game->player.location = (t_point){game->display.level.player_start.y, game->display.level.player_start.x};
 	game->player.direction = D_SO; // To define N,S,E,O from player start look direction
 	return (0);
 }

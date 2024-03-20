@@ -89,8 +89,8 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 	camera = 2 * ray / game->display.win.size[WIDTH] - 1;
 	ray_dir.x = dir_vector.x + plane.x * camera;
 	ray_dir.y = dir_vector.y + plane.y * camera;
-	dda->start = game->display.level.player_start;
-	dda->end = game->display.level.player_start;
+	dda->start = game->player.location;
+	dda->end = game->player.location;
 	// printf("///////////////////\n");
 	// printf("camera : %f \n", camera);
 	// printf("ray_dir.x : %f \n", ray_dir.x);
@@ -121,9 +121,9 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 	// printf("player_start.x : %f \n", game->display.level.player_start.x);
 	// printf("player_start.y : %f \n", game->display.level.player_start.y);
 	mlx_string_put(game->display.ptr, game->display.win.ptr, 500, 520, 0xFFFFFF, 
-	ft_itoa((int)game->display.level.player_start.x));
+	ft_itoa((int)game->player.location.x));
 	mlx_string_put(game->display.ptr, game->display.win.ptr, 530, 520, 0xFFFFFF, 
-	ft_itoa((int)game->display.level.player_start.y));
+	ft_itoa((int)game->player.location.y));
 	// game->display.level.player_start.x = floor(game->display.level.player_start.x);
 	// game->display.level.player_start.y = floor(game->display.level.player_start.y);
 	render_ray(game, dda, ray, ray_dir);
