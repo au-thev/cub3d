@@ -12,14 +12,6 @@
 
 #include "game.h"
 
-enum	e_direction
-{
-	D_NO=270,
-	D_SO=90,
-	D_EA=0,
-	D_WE=180
-};
-
 int	load_game(t_game *game)
 {
 	game->player.location = (t_point){game->display.level.player_start.y, game->display.level.player_start.x};

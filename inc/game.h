@@ -26,6 +26,14 @@ struct s_game
 	t_entity	player;
 };
 
+enum	e_direction
+{
+	D_NO=270,
+	D_SO=90,
+	D_EA=0,
+	D_WE=180
+};
+
 int	loop(void *param);
 int	load_game(t_game *game);
 

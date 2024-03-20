@@ -18,7 +18,6 @@
 #include "events.h"
 #include <stdio.h>
 
-
 int	main(int argc, char **argv)
 {
 	t_game		game;
@@ -26,7 +25,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	game.display.ptr = mlx_init();
-	game.display.fov = 60; // TEMP
 	new_window(&game.display);
 	mlx_string_put(game.display.ptr, game.display.win.ptr, 106, 106, 0x0,
 		"Loading game...");
@@ -37,14 +35,8 @@ int	main(int argc, char **argv)
 	}
 	register_events(&game);
 	load_game(&game);
-	game.display.level.player_start.x = 26;
-	game.display.level.player_start.y = 3;
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
 	mlx_loop_hook(game.display.ptr, loop, &game);
-	// printf("Entering raycast :\n");
-	// mlx_loop_hook(game.display.ptr, operate_raycast, &game);
-	// operate_raycast(&game);
-	// printf("Quit raycast :\n");
 	mlx_loop(game.display.ptr);
 	unload_game(&game.display);
 	return (0);
