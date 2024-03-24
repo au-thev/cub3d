@@ -12,9 +12,11 @@ level/unload_level \
 window/pixel_put \
 window/v_line \
 window/new_window \
+window/draw_circle \
 game/loop \
 game/load_game \
 game/unload_game \
+game/minimap \
 events/keyboard \
 events/mouse \
 events/register_events \

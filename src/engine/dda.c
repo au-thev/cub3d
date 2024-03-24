@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
+/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:32:07 by coltcivers        #+#    #+#             */
-/*   Updated: 2024/03/19 23:32:10 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/03/21 15:19:23 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ t_dda	dda_ray(t_game *game, t_point plane, \
 	camera = 2 * ray / game->display.win.size[WIDTH] - 1;
 	ray_dir.x = dir_vector.x + plane.x * camera;
 	ray_dir.y = dir_vector.y + plane.y * camera;
-	dda->start = game->display.level.player_start;
-	dda->end = game->display.level.player_start;
+	dda->start = game->player.location;
+	dda->end = game->player.location;
 	compute_delta_dist(dda, ray_dir);
 	dda_loop(game, dda, completion, max_iter);
 	render_ray(game, dda, ray, ray_dir);
