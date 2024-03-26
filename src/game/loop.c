@@ -6,7 +6,7 @@
 /*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:12:48 by antheven          #+#    #+#             */
-/*   Updated: 2024/03/22 15:35:39 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/03/26 12:31:43 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "engine.h"
 #include "mlx.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "utils.h"
 
@@ -91,10 +92,11 @@ static void	handle_left(t_game *game)
 int	loop(void *param)
 {
 	t_game	*game;
-	int		keycode;
+	int		x;
 
 	game = param;
-	keycode = 65535;
+	x = game->display.win.size[WIDTH];
+	int	keycode = 65535;
 	while (keycode-- > 0)
 	{
 		if (game->events.keys[119] && keycode == 119)
