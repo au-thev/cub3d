@@ -6,7 +6,7 @@
 /*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:32:23 by coltcivers        #+#    #+#             */
-/*   Updated: 2024/03/20 00:55:26 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/03/22 16:12:21 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,18 @@ static void	render_ray_helper(t_game *game, t_dda *dda,
 	double			wall_x;
 	double			tex_pos;
 	double			i;
-
+	int				color_floor;
+	int				color_ceiling;
+	
 	i = 0;
+	color_floor = ((game->display.level.textures[F].image.color[1] & 0xff) << 16) 
+		+ ((game->display.level.textures[F].image.color[2] & 0xff) << 8)
+		 + (game->display.level.textures[F].image.color[3] & 0xff);
+	color_ceiling = ((game->display.level.textures[C].image.color[1] & 0xff) << 16) 
+		+ ((game->display.level.textures[C].image.color[2] & 0xff) << 8)
+		 + (game->display.level.textures[C].image.color[3] & 0xff);
 	while (i < renderer.draw_start)
-		pixel_put(&game->display.win.buffer, renderer.ray, i++, 0x0a75ad);
+		pixel_put(&game->display.win.buffer, renderer.ray, i++, color_floor);
 	if (dda->side == 0)
 		wall_x = dda->start.y + dda->distance * ray_dir.y;
 	else
@@ -71,7 +79,7 @@ static void	render_ray_helper(t_game *game, t_dda *dda,
 	wall_x -= floor((wall_x));
 	i = render_ray_helper_2(game, renderer, wall_x, i);
 	while (i < game->display.win.size[HEIGHT])
-		pixel_put(&game->display.win.buffer, renderer.ray, i++, 0x794044);
+		pixel_put(&game->display.win.buffer, renderer.ray, i++, color_ceiling);
 }
 
 void	render_ray(t_game *game, t_dda *dda, int ray, t_point ray_dir)

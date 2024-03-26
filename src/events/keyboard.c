@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 07:19:43 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/19 16:15:20 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:04:50 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	kb_down(int keycode, t_game *game)
 
 int	kb_up(int keycode, t_game *game)
 {
+	
 	game->events.keys[keycode] = 0;
 	return (0);
 }

@@ -3,42 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   load_level.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/10 16:07:18 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:51:59 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "level.h"
+#include "game.h"
 #include <fcntl.h>
 #include <stdio.h>
-
-void	check_for_player(t_lvl *level, char *line, int i)
-{
-	if (ft_strchr(line, 'N'))
-	{
-		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'N') - line - 1;
-	}
-	if (ft_strchr(line, 'S'))
-	{
-		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'S') - line - 1;
-	}
-	if (ft_strchr(line, 'E'))
-	{
-		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'E') - line - 1;
-	}
-	if (ft_strchr(line, 'W'))
-	{
-		level->player_start.y = i;
-		level->player_start.x = ft_strchr(line, 'W') - line - 1;
-	}
-	printf("Player Y=%f, X=%f\n", level->player_start.y, level->player_start.x);
-}
 
 static t_tex_type	get_token_type(char *s)
 {
