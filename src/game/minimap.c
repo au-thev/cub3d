@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:42:24 by antheven          #+#    #+#             */
-/*   Updated: 2024/03/22 00:54:46 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:36:40 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,41 +44,41 @@
 // 	draw_circle(&game->display.win.buffer, (t_point){game->player.location.y * ratio, game->player.location.x * ratio}, 5, 0xFF00FF);
 // }
 
-void		draw_minimap(t_game *game)
-{
-	t_entity	player;
-	int		player_rot;
+// void		draw_minimap(t_game *game)
+// {
+// 	t_entity	player;
+// 	int		player_rot;
  
-	player = game->player;
-	player_rot = player.direction;
-	t_point	step;
-	t_point pstep;
+// 	player = game->player;
+// 	player_rot = player.direction;
+// 	t_point	step;
+// 	t_point pstep;
 
-	step.x = cos(degtorad(player_rot));
-	step.y = sin(degtorad(player_rot));
-	pstep.x = sin(degtorad(player_rot)) * (60 / 100);
-	pstep.y = -cos(degtorad(player_rot)) * (60 / 100);
-	t_dda dd;
-	int		x = 0;
-	while (x < game->display.win.size[WIDTH])
-	{
-		t_point	ray_dir;
-		t_point	camera;
+// 	step.x = cos(degtorad(player_rot));
+// 	step.y = sin(degtorad(player_rot));
+// 	pstep.x = sin(degtorad(player_rot)) * (60 / 100);
+// 	pstep.y = -cos(degtorad(player_rot)) * (60 / 100);
+// 	t_dda dd;
+// 	int		x = 0;
+// 	while (x < game->display.win.size[WIDTH])
+// 	{
+// 		t_point	ray_dir;
+// 		t_point	camera;
 
-		camera.x = 2 * x / game->display.win.size.x - 1;
-		ray_dir.x = step.x + pstep.x * camera.x;
-		ray_dir.y = step.y + pstep.y * camera.x;
-		dd = dda(game, game->world[(int)game->entity[0].world.id].grid, game->world[(int)game->entity[0].world.id].size, player.position, vec_mul(ray_dir, 1));
-		for (int s = 0; s <= (int)(dd.distance * game->minimap.ratio); s++) // DESSINE LA DIRECTION DE LA CAMERA EN BLEU
-			buffer_write(game, player.location.x*game->minimap.ratio + s * ray_dir.x, player.location.y*game->minimap.ratio + s * ray_dir.y, (dd.facing+1)*0x004400);
-		//draw_line(game, vec_mul(dd.start, game->minimap.ratio), vec_add(vec_mul(dd.end, game->minimap.ratio), 1), (dd.side + 1) * 0x004400);
-		x++;
-	}
-	for (int y = 0; y < player.world.obj->size.y; y++)
-		for (int x = 0; x < player.world.obj->size.x; x++)
-			for (int s = 0; s < game->minimap.ratio; s++)
-				if (player.world.obj->grid[y][x] > 0)
-					vert_line(game, x*game->minimap.ratio+s, y*game->minimap.ratio, y*game->minimap.ratio+game->minimap.ratio, player.world.obj->grid[y][x]*0x111111);
+// 		camera.x = 2 * x / game->display.win.size.x - 1;
+// 		ray_dir.x = step.x + pstep.x * camera.x;
+// 		ray_dir.y = step.y + pstep.y * camera.x;
+// 		dd = dda(game, game->world[(int)game->entity[0].world.id].grid, game->world[(int)game->entity[0].world.id].size, player.position, vec_mul(ray_dir, 1));
+// 		for (int s = 0; s <= (int)(dd.distance * game->minimap.ratio); s++) // DESSINE LA DIRECTION DE LA CAMERA EN BLEU
+// 			buffer_write(game, player.location.x*game->minimap.ratio + s * ray_dir.x, player.location.y*game->minimap.ratio + s * ray_dir.y, (dd.facing+1)*0x004400);
+// 		//draw_line(game, vec_mul(dd.start, game->minimap.ratio), vec_add(vec_mul(dd.end, game->minimap.ratio), 1), (dd.side + 1) * 0x004400);
+// 		x++;
+// 	}
+// 	for (int y = 0; y < player.world.obj->size.y; y++)
+// 		for (int x = 0; x < player.world.obj->size.x; x++)
+// 			for (int s = 0; s < game->minimap.ratio; s++)
+// 				if (player.world.obj->grid[y][x] > 0)
+// 					vert_line(game, x*game->minimap.ratio+s, y*game->minimap.ratio, y*game->minimap.ratio+game->minimap.ratio, player.world.obj->grid[y][x]*0x111111);
 //	for (int s = 0; s < game->minimap.ratio * 2; s++) // DESSINE LA DIRECTION DE LA CAMERA EN BLEU
 //		buffer_write(game, player.location.x*game->minimap.ratio + s * step.x, player.location.y*game->minimap.ratio + s * step.y, 0x0000FF);
 //	for (int s = -game->minimap.ratio*player_rot.fov/100+1; s < game->minimap.ratio*player_rot.fov/100; s++) // DESSINE LA ZONE RENDUE DE L'ECRAN
@@ -99,5 +99,5 @@ void		draw_minimap(t_game *game)
 	//for (int s = 0; s < map_size/3; s++)
 	//	vert_line(game, player_loc.x*map_size+s + player_loc.x*map_size/3, player_loc.y*map_size + player_loc.y*map_size/3, player_loc.y*map_size+map_size/3 + player_loc.y*map_size/3, 0x00FFFF);
 //	draw_line(game, ray_start, ray_end, 0xABCDEF);
-	return (1);
-}
+// 	return (1);
+// }

@@ -6,7 +6,7 @@
 /*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:32:23 by coltcivers        #+#    #+#             */
-/*   Updated: 2024/03/22 16:12:21 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/03/26 12:43:44 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static unsigned int	get_pixel_color(t_image image, int x, int y)
 {
 	int		color;
-	int		temp_a;
+	// int		temp_a;
 
 	color = 0xFFFFFF;
 	color = *(unsigned int *)(image.data + (y % image.size[HEIGHT]
@@ -58,7 +58,7 @@ static void	render_ray_helper(t_game *game, t_dda *dda,
 	t_render renderer, t_point ray_dir)
 {
 	double			wall_x;
-	double			tex_pos;
+	// double			tex_pos;
 	double			i;
 	int				color_floor;
 	int				color_ceiling;

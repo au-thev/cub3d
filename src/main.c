@@ -6,7 +6,7 @@
 /*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:19:10 by antheven          #+#    #+#             */
-/*   Updated: 2024/03/23 15:33:13 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/03/26 12:43:02 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 #include "engine.h"
 #include "events.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-static void	close_game(t_game game)
-{
-	printf("pressed destroy \n");
-	unload_game(&game.display);
-	exit(0);
-}
+// static void	close_game(t_game game)
+// {
+// 	printf("pressed destroy \n");
+// 	unload_game(&game.display);
+// 	exit(0);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +46,8 @@ int	main(int argc, char **argv)
 	register_events(&game);
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
 	mlx_loop_hook(game.display.ptr, loop, &game);
-	mlx_hook(&game.display.win, 17, 0, &close_game, &game);
+	load_game(&game);
+	// mlx_hook(&game.display.win, 17, 0, close_game, &game);
 	mlx_loop(game.display.ptr);
 	unload_game(&game.display);
 	return (0);
