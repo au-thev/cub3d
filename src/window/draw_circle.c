@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 07:19:43 by antheven          #+#    #+#             */
-/*   Updated: 2024/03/27 13:09:18 by antheven         ###   ########.fr       */
+/*   Created: 2024/03/21 15:21:10 by antheven          #+#    #+#             */
+/*   Updated: 2024/03/21 18:57:03 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-#include "events.h"
+#include "utils.h"
+#include <math.h>
 
-int	kb_init(t_game *game)
+void	draw_circle(t_image *image, t_point pos, int r, int color)
 {
-	int	keycode;
+	int	degree;
 
-	keycode = 65535;
-	while (keycode-- > 0)
-		game->events.keys[keycode] = 0;
-	return (0);
-}
-
-int	kb_down(int keycode, t_game *game)
-{
-	game->events.keys[keycode] = 1;
-	return (0);
-}
-
-int	kb_up(int keycode, t_game *game)
-{
-	
-	game->events.keys[keycode] = 0;
-	return (0);
+	degree = 360;
+	while (degree-- > 0)
+	pixel_put(image, pos.x + cos(deg_to_rad(degree)) * r, pos.y + sin(deg_to_rad(degree)) * r, color);
 }

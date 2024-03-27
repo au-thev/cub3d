@@ -6,12 +6,21 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 21:39:59 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/19 22:25:45 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:14:27 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "level.h"
 #include "libft.h"
+
+// static void remap(t_lvl *level)
+// {
+// 	int	i;
+// 	cha
+
+// 	i = level->map_length;
+
+// }
 
 int	parse_map(t_lvl *level, char *line)
 {
@@ -32,5 +41,6 @@ int	parse_map(t_lvl *level, char *line)
 		;
 	map_add(level, i, 0);
 	level->map_length = i;
+	// remap(level);
 	return (2);
 }

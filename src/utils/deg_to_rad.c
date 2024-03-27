@@ -14,5 +14,5 @@
 
 double	deg_to_rad(double d)
 {
-	return(d * M_PI / 180);
+	return (d * M_PI / 180);
 }

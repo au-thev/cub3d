@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 09:09:23 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/03 20:28:31 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/20 00:57:04 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_readline(int fd)
 	while (i > 0)
 	{
 		i = read(fd, buffer, 1);
-		if (*buffer == '\n')// || i == 0)
+		if (*buffer == '\n')
 			break ;
 		if (i <= 0)
 		{

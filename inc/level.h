@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   level.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 09:39:19 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 08:45:56 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:41:57 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_lvl
 	t_point		player_start;
 	int			fd;
 	char		loaded;
+	int			initial_direction;
 };
 
 int		load_level(t_lvl *level, char *level_file);

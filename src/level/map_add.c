@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_add.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 22:23:56 by antheven          #+#    #+#             */
-/*   Updated: 2023/12/19 22:54:15 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:52:16 by coltcivers       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "level.h"
 #include "libft.h"
+#include "game.h"
 
 static void	check_for_player(t_lvl *level, char *line, int i)
 {
@@ -19,21 +20,26 @@ static void	check_for_player(t_lvl *level, char *line, int i)
 	{
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'N') - line - 1;
+		level->initial_direction = D_NO;
 	}
 	if (ft_strchr(line, 'S'))
 	{
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'S') - line - 1;
+		level->initial_direction = D_SO;
 	}
 	if (ft_strchr(line, 'E'))
 	{
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'E') - line - 1;
+		level->initial_direction = D_EA;
 	}
 	if (ft_strchr(line, 'W'))
 	{
 		level->player_start.y = i;
 		level->player_start.x = ft_strchr(line, 'W') - line - 1;
+		level->initial_direction = D_WE;
+
 	}
 }
 

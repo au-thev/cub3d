@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:07:55 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/01 09:01:08 by antheven         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:05:19 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,16 @@ struct s_game
 	t_entity	player;
 };
 
-int	loop(void *param);
-int	load_game(t_game *game);
+enum	e_direction
+{
+	D_NO=270,
+	D_SO=90,
+	D_EA=0,
+	D_WE=180
+};
+
+int		loop(void *param);
+int		load_game(t_game *game);
+void    draw_minimap(t_game *game);
 
 #endif
