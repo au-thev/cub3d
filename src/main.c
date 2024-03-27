@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:19:10 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/19 16:12:32 by antheven         ###   ########.fr       */
+/*   Updated: 2024/02/14 01:59:19 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	game.display.ptr = mlx_init();
-	game.display.fov = 60; // TEMP
+	if (!game.display.ptr)
+		return (1);
 	new_window(&game.display);
 	mlx_string_put(game.display.ptr, game.display.win.ptr, 106, 106, 0x0,
 		"Loading game...");
@@ -37,8 +38,8 @@ int	main(int argc, char **argv)
 	}
 	register_events(&game);
 	load_game(&game);
-	game.display.level.player_start.x = 26;
-	game.display.level.player_start.y = 3;
+	// game.display.level.player_start.x = 26;
+	// game.display.level.player_start.y = 3;
 	mlx_clear_window(game.display.ptr, game.display.win.ptr);
 	mlx_loop_hook(game.display.ptr, loop, &game);
 	// printf("Entering raycast :\n");

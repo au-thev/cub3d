@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 08:53:54 by antheven          #+#    #+#             */
-/*   Updated: 2024/01/10 16:07:18 by antheven         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:24:17 by antheven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static int	check_lvl_arg(t_lvl *level, char *line)
 	char		**args;
 	t_tex_type	tex_type;
 
+	if (ft_strlen(line))
+		return (0);
 	if (!(ft_strlen(line) && ft_strchr(line, ' ') && *line != ' '))
 		return (1);
 	args = ft_split(line, ' ');
@@ -99,7 +101,7 @@ int	load_level(t_lvl *level, char *level_file)
 		line = ft_readline(level->fd);
 		if (!line)
 			break ;
-		if (check_lvl_arg(level, line))
+		if (check_lvl_arg(level, line)) // A re-ecrire
 			if (parse_map(level, line))
 				break ;
 	}
