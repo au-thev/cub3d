@@ -3,7 +3,7 @@ FUNCTIONS=isalpha isdigit isalnum isascii isprint strlen memset strlcpy \
 	memmove strnstr atoi calloc strdup \
 	isspace substr strjoin strtrim split \
 	itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd \
-	readline bzero
+	readline bzero get_next_line
 NB := $(words $(FUNCTIONS))
 CUR = 0
 SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ft_,$(FUNCTIONS))))
