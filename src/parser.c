@@ -6,16 +6,19 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 08:38:01 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 19:15:14 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:59:00 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "color.h"
 #include "cub3d.h"
 #include "mlx.h"
 
-int	load_texture(t_cub3d *cub3d, char type, char *path)
+static int	load_texture(t_cub3d *cub3d, char type, char *path)
 {
+	if (cub3d->level.texture[type].loaded)
+		return (1);
 	cub3d->level.texture[type].ptr = mlx_xpm_file_to_image(cub3d->mlx.ptr,
 			path, &(cub3d->level.texture[type].size[0]),
 			&(cub3d->level.texture[type].size[1]));
@@ -33,56 +36,50 @@ int	load_texture(t_cub3d *cub3d, char type, char *path)
 	return (0);
 }
 
-int	decode_rgb_str(char *s)
+static int	load_color(t_cub3d *cub3d, char *line)
 {
-	int		irgb;
-	int		r;
-	int		g;
-	int		b;
+	int	color;
 
-	s = ft_strchr(s, ' ') + 1;
-	r = ft_atoi(s);
-	s = ft_strchr(s, ',') + 1;
-	g = ft_atoi(s);
-	s = ft_strchr(s, ',') + 1;
-	b = ft_atoi(s);
-	irgb = (0 << 24 | r << 16 | g << 8 | b);
-	return (irgb);
-}
-
-int	load_color(t_cub3d *cub3d, char *token, char *s)
-{
-	if (ft_strncmp("F", token, 2) == 0)
+	color = decode_rgb_str(line + 2);
+	if (color == -1)
+		return (1);
+	if (ft_strncmp("F ", line, 2) == 0)
+	{
 		cub3d->level.color_load[0] = 1;
-	if (ft_strncmp("C", token, 2) == 0)
+		cub3d->level.color[0] = color;
+	}
+	if (ft_strncmp("C ", line, 2) == 0)
+	{
 		cub3d->level.color_load[1] = 1;
-	return (decode_rgb_str(s));
+		cub3d->level.color[1] = color;
+	}
+	return (0);
 }
 
 int	parse_params(t_cub3d *cub3d, char *line)
 {
-	char	**tokens;
 	int		res;
 
-	tokens = ft_split(line, ' ');
 	res = 0;
-	if (ft_strncmp("NO", tokens[0], 3) == 0)
-		res = load_texture(cub3d, NO, tokens[1]);
-	if (ft_strncmp("SO", tokens[0], 3) == 0)
-		res = load_texture(cub3d, SO, tokens[1]);
-	if (ft_strncmp("EA", tokens[0], 3) == 0)
-		res = load_texture(cub3d, EA, tokens[1]);
-	if (ft_strncmp("WE", tokens[0], 3) == 0)
-		res = load_texture(cub3d, WE, tokens[1]);
-	if (ft_strncmp("F", tokens[0], 2) == 0)
-		cub3d->level.color[0] = load_color(cub3d, tokens[0], line);
-	if (ft_strncmp("C", tokens[0], 2) == 0)
-		cub3d->level.color[1] = load_color(cub3d, tokens[0], line);
-	printf("\033[0;32mLoading \033[0;33m%s\033[0m from \033[0;33m%s\033[0m\n",
-		tokens[0], tokens[1]);
+	printf(GREEN "Loading parameter : " ORANGE "%s\n" RESET, line);
+	if (ft_strncmp("NO ", line, 3) == 0)
+		res += load_texture(cub3d, NO, line + 3);
+	else if (ft_strncmp("SO ", line, 3) == 0)
+		res += load_texture(cub3d, SO, line + 3);
+	else if (ft_strncmp("EA ", line, 3) == 0)
+		res += load_texture(cub3d, EA, line + 3);
+	else if (ft_strncmp("WE ", line, 3) == 0)
+		res += load_texture(cub3d, WE, line + 3);
+	else if (ft_strncmp("F ", line, 2) == 0
+		|| ft_strncmp("C ", line, 2) == 0)
+		res += load_color(cub3d, line);
+	else
+	{
+		dprintf(2, RED "Error\n"
+			ORANGE "The line is not a valid parameter\n" RESET);
+		return (1);
+	}
 	if (res)
-		dprintf(2, "\033[0;31mError\n\033[0;35mCannot load texture\n\033[0m");
-	free(*tokens);
-	free(tokens);
+		dprintf(2, RED "Error\n" ORANGE "Cannot load texture\n" RESET);
 	return (res);
 }

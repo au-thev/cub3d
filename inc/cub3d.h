@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:57:07 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 17:48:48 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:56:18 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int				do_raycast(t_cub3d *cub3d);
 int				load_level(t_cub3d *cub3d, char *path);
 int				flood_fill_start(t_cub3d *cub3d, int x, int y);
 int				parse_map(t_cub3d *cub3d, char *line, int fd);
+int				decode_rgb_str(char *s);
 int				parse_params(t_cub3d *cub3d, char *line);
 int				check_params(t_cub3d *cub3d);
 void			check_for_player(t_cub3d *cub3d, char *line, int i);

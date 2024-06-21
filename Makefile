@@ -8,6 +8,7 @@ map_checker \
 map \
 move \
 parser \
+parser_colors \
 raycaster \
 check_params \
 
