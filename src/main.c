@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 07:01:37 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/18 21:12:58 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:55:44 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	is_valid_filename(char const path[])
 
 	if (extension == NULL)
 		return (0);
-	return (ft_strncmp(extension, ".cub", 5) == 0)
+	return (ft_strncmp(extension, ".cub", 5) == 0);
 }
 
 int	main(int argc, char **argv)
@@ -91,6 +91,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Usage : ./cub3d <filename>\n", STDERR_FILENO);
 		return (1);
 	}
+	ft_bzero(&cub3d, sizeof(cub3d));
 	if (mlx_start(&cub3d))
 	{
 		ft_putstr_fd("Failed to initialize mlx!\n", STDERR_FILENO);
