@@ -3,7 +3,7 @@ FUNCTIONS=isalpha isdigit isalnum isascii isprint strlen memset strlcpy \
 	memmove strnstr atoi calloc strdup \
 	isspace substr strjoin strtrim split \
 	itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd \
-	lst_addback lst_addfront lstclear lstdelone lstiter lstlast lstmap lstnew lstsize \
+	lstadd_back lstadd_front lstclear lstdelone lstiter lstlast lstmap lstnew lstsize \
 	readline bzero get_next_line
 NB := $(words $(FUNCTIONS))
 CUR = 0
