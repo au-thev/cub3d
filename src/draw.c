@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:07:18 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/22 18:29:54 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:50:07 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel(t_cub3d *cub3d, int x, int y, int color)
 
 	dst = cub3d->mlx.buffer.data + (y * cub3d->mlx.buffer.sl + x
 			* (cub3d->mlx.buffer.bpp / 8));
-	if (x >= 0 && x < 800 && y >= 0 && y < 600)
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
 		*(unsigned int *)dst = color;
 }
 
