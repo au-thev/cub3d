@@ -30,7 +30,7 @@ $(NAME): $(OBJ) libft/libft.a minilibx-linux/libmlx.a
 	cc -o $(NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 	@/bin/echo -e "\nBuilding binary [$(NAME)]"
 
--include $(DEPS)
+-include $(DEP)
 
 .c.o:
 	@cc $(CFLAGS) -c -MMD -MP $< -o $@
@@ -38,7 +38,7 @@ $(NAME): $(OBJ) libft/libft.a minilibx-linux/libmlx.a
 	@/bin/echo -ne "Compiling sources [$(shell echo "$(CUR)*100/$(NB)" | bc)%] $@            \r"
 
 clean:
-	@$(RM) -rf $(OBJ)
+	@$(RM) -rf $(OBJ) $(DEP)
 	@make -C minilibx-linux clean
 	@make -C libft clean
 	@echo Cleaning compiled files
@@ -58,8 +58,12 @@ minilibx-linux/libmlx.a:
 	@make -C minilibx-linux
 
 norm:
-	norminette libft
+	norminette libft/src/
+	norminette libft/include/
 	norminette src/
+	norminette inc/cub3d.h
+	norminette inc/color.h
+	norminette inc/libft.h
 
 test: all
 	@echo Checking for missing params
