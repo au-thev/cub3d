@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:56:32 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/22 19:40:13 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:31:59 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ int	draw_raycast(t_cub3d *cub3d, t_draw *draw)
 		put_pixel(cub3d, cub3d->dda.current_x, y, draw->color);
 		y++;
 	}
-	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH, (int [2]){0, draw->start},
+	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH,
+		(int [2]){0, draw->start},
 		cub3d->level.color[1]);
-	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH, (int [2]){draw->end, SCREEN_HEIGHT},
+	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH,
+		(int [2]){draw->end, SCREEN_HEIGHT},
 		cub3d->level.color[0]);
 	return (0);
 }

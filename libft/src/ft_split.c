@@ -6,7 +6,7 @@
 /*   By: antheven <antheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:25:30 by antheven          #+#    #+#             */
-/*   Updated: 2024/06/22 18:18:25 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:28:25 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	count_words(const char *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	char	*str;
-	int		i;
+	char			*str;
+	int				i;
 	char **const	tab = ft_calloc((count_words(s, c) + 1), sizeof(char *));
 
 	if (tab == NULL)
