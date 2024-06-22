@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 07:01:37 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/20 14:55:44 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 16:50:22 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "mlx.h"
 
-int	loop(void *param)
+static int	loop(void *param)
 {
 	t_cub3d	*cub3d;
 
@@ -27,7 +27,7 @@ int	loop(void *param)
 	return (0);
 }
 
-int	mlx_produce(t_cub3d *cub3d)
+static int	mlx_produce(t_cub3d *cub3d)
 {
 	cub3d->mlx.ptr = mlx_init();
 	if (!cub3d->mlx.ptr)
@@ -50,7 +50,7 @@ int	mlx_produce(t_cub3d *cub3d)
 	return (0);
 }
 
-int	mlx_start(t_cub3d *cub3d)
+static int	mlx_start(t_cub3d *cub3d)
 {
 	int	i;
 
@@ -72,7 +72,7 @@ int	mlx_start(t_cub3d *cub3d)
 	return (0);
 }
 
-int	is_valid_filename(char const path[])
+static int	is_valid_filename(char const path[])
 {
 	char const	*extension = ft_strrchr(path, '.');
 
@@ -102,7 +102,6 @@ int	main(int argc, char **argv)
 		cub3d.level.texture[i].loaded = 0;
 	cub3d.level.map = 0;
 	if (is_valid_filename(argv[1]) && !load_level(&cub3d, argv[1]))
-		if (!check_params(&cub3d))
-			mlx_loop(cub3d.mlx.ptr);
+		mlx_loop(cub3d.mlx.ptr);
 	free_game(&cub3d);
 }

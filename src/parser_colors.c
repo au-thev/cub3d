@@ -6,7 +6,7 @@
 /*   By: pnguyen- <pnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:53:29 by pnguyen-          #+#    #+#             */
-/*   Updated: 2024/06/20 14:57:57 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:36:42 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,27 @@
 #define NOT_LAST_COLOR	0
 #define LAST_COLOR		1
 
+#define COLOR_MAX		"255"
+#define COLOR_MAX_LEN	3
+
 static int	is_valid_color(char *s)
 {
 	size_t		len;
-	size_t		len_int_max;
 	int			status;
-	char *const	int_max = ft_itoa(INT_MAX);
 
-	if (int_max == NULL)
-	{
-		perror(RED "is_valid_color:ft_itoa" RESET);
-		return (0);
-	}
-	len_int_max = ft_strlen(int_max);
 	len = 0;
 	while (ft_isdigit(s[len]))
 		len++;
-	if (len == len_int_max)
-		status = ft_strncmp(s, int_max, len) < 0;
+	if (len == COLOR_MAX_LEN)
+		status = ft_strncmp(s, COLOR_MAX, COLOR_MAX_LEN) <= 0;
 	else
-		status = len < len_int_max;
-	free(int_max);
+		status = len < COLOR_MAX_LEN;
 	return (status);
 }
 
 static int	get_color(char *s, int is_last_color)
 {
 	char	*start;
-	int		color;
 
 	while (*s == ' ')
 		s++;
@@ -58,7 +51,7 @@ static int	get_color(char *s, int is_last_color)
 		s++;
 	if ((!is_last_color && *s != ',')
 		|| (is_last_color && *s != '\0')
-		|| !is_valid_color(s))
+		|| !is_valid_color(start))
 		return (-1);
 	return (ft_atoi(start) & 0xFF);
 }
