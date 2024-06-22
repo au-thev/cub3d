@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:54:46 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/11 03:23:47 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:42:52 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ int	get_distance(t_cub3d *cub3d)
 	else
 		cub3d->dda.wall_dist
 			= (cub3d->dda.side_dist[Y] - cub3d->dda.delta_dist[Y]);
+	if (cub3d->dda.wall_dist == 0)
+		cub3d->dda.wall_dist = .1;
 	return (0);
 }

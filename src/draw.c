@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:07:18 by autheven          #+#    #+#             */
-/*   Updated: 2024/05/31 09:54:07 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:29:54 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ unsigned int	get_pixel(t_cub3d *cub3d, int x, int y, char facing)
 {
 	char	*dst;
 
-	dst = cub3d->level.texture[facing].data
-		+ (y * cub3d->level.texture[facing].sl + x
-			* (cub3d->level.texture[facing].bpp / 8));
+	dst = cub3d->level.texture[(int)facing].data
+		+ (y * cub3d->level.texture[(int)facing].sl + x
+			* (cub3d->level.texture[(int)facing].bpp / 8));
 	return (*(unsigned int *)dst);
 }
 

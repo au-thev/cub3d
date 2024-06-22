@@ -6,12 +6,13 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:56:32 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/09 09:19:28 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:48:41 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdio.h>
+#include <limits.h>
 #include "cub3d.h"
 
 int	draw_raycast(t_cub3d *cub3d, t_draw *draw)
@@ -97,6 +98,8 @@ int	do_raycast(t_cub3d *cub3d)
 		if (cub3d->dda.wall_dist == 0)
 			cub3d->dda.wall_dist = .1;
 		draw.line_height = (int)(400 / cub3d->dda.wall_dist);
+		if (draw.line_height < 0)
+			draw.line_height = INT_MAX;
 		draw.start = -draw.line_height / 2 + 600 / 2;
 		if (draw.start < 0)
 			draw.start = 0;

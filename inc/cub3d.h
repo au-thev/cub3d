@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:57:07 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/22 18:45:43 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:54:20 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ struct s_draw
 	double			wall_x;
 	int				line_height;
 };
-
 
 void			put_pixel(t_cub3d *cub3d, int x, int y, int color);
 unsigned int	get_pixel(t_cub3d *cub3d, int x, int y, char facing);
