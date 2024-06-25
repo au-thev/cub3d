@@ -8,8 +8,9 @@ map_checker \
 map \
 move \
 parser \
+parser_colors \
 raycaster \
-check_params \
+print_level \
 
 NB := $(words $(SRCS))
 CUR = 0

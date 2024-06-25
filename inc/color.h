@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnguyen- <pnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:24:17 by pnguyen-          #+#    #+#             */
-/*   Updated: 2024/01/22 15:37:29 by pnguyen-         ###   ########.fr       */
+/*   Created: 2024/06/20 14:30:23 by pnguyen-          #+#    #+#             */
+/*   Updated: 2024/06/20 15:06:53 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#ifndef COLOR_H
+# define COLOR_H
 
-int	ft_strncmp(char const s1[], char const s2[], size_t n)
-{
-	if (n == 0)
-		return (0);
-	while (--n)
-	{
-		if (*s1 != *s2)
-			break ;
-		if (*s1 == '\0')
-			break ;
-		s1++;
-		s2++;
-	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
+# define RED	"\e[31m"
+# define GREEN	"\e[32m"
+# define ORANGE	"\e[33m"
+# define BLUE	"\e[34m"
+# define PURPLE	"\e[35m"
+# define CYAN	"\e[36m"
+# define BOLD	"\e[1m"
+# define UNBOLD	"\e[22m"
+# define ITA	"\e[3m"
+# define NOITA	"\e[23m"
+# define RESET	"\e(B\e[m"
+
+#endif
