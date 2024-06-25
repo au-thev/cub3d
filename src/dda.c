@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 11:54:46 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/11 03:23:47 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:31:09 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	preload_dda_vars(t_cub3d *cub3d)
 	cub3d->dda.dir[Y] = sin(cub3d->dda.rot_rad);
 	cub3d->dda.plane[X] = -sin(cub3d->dda.rot_rad);
 	cub3d->dda.plane[Y] = cos(cub3d->dda.rot_rad);
-	cub3d->dda.camera_x = 2 * cub3d->dda.current_x / (double)(800) - 1;
+	cub3d->dda.camera_x = 2 * cub3d->dda.current_x / (double)(SCREEN_WIDTH) - 1;
 	cub3d->dda.ray_dir[X] = cub3d->dda.dir[X] + cub3d->dda.plane[X]
 		* cub3d->dda.camera_x;
 	cub3d->dda.ray_dir[Y] = cub3d->dda.dir[Y] + cub3d->dda.plane[Y]
@@ -103,5 +103,7 @@ int	get_distance(t_cub3d *cub3d)
 	else
 		cub3d->dda.wall_dist
 			= (cub3d->dda.side_dist[Y] - cub3d->dda.delta_dist[Y]);
+	if (cub3d->dda.wall_dist == 0)
+		cub3d->dda.wall_dist = .1;
 	return (0);
 }

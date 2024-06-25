@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:19:02 by autheven          #+#    #+#             */
-/*   Updated: 2024/05/27 16:51:26 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:44:48 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	key_press(int keycode, void *param)
 
 	cub3d = param;
 	cub3d->keyboard[keycode] = 1;
+	return (0);
 }
 
 int	key_release(int keycode, void *param)
@@ -27,6 +28,7 @@ int	key_release(int keycode, void *param)
 
 	cub3d = param;
 	cub3d->keyboard[keycode] = 0;
+	return (0);
 }
 
 int	keys_check(t_cub3d *cub3d)

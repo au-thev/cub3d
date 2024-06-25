@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:57:07 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/22 18:45:43 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:54:19 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <fcntl.h>
 # include "libft.h"
 
-# define MOVE_RATIO	0.1
+# define SCREEN_WIDTH	1280
+# define SCREEN_HEIGHT	720
+# define MOVE_RATIO		0.1
 
 typedef struct s_cub3d	t_cub3d;
 typedef struct s_draw	t_draw;
@@ -106,7 +108,6 @@ struct s_draw
 	double			wall_x;
 	int				line_height;
 };
-
 
 void			put_pixel(t_cub3d *cub3d, int x, int y, int color);
 unsigned int	get_pixel(t_cub3d *cub3d, int x, int y, char facing);

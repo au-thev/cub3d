@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 07:01:37 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/22 16:50:22 by pnguyen-         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:31:31 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ static int	mlx_produce(t_cub3d *cub3d)
 	cub3d->mlx.ptr = mlx_init();
 	if (!cub3d->mlx.ptr)
 		return (1);
-	cub3d->mlx.win = mlx_new_window(cub3d->mlx.ptr, 800, 600, "Cub3D");
+	cub3d->mlx.win = mlx_new_window(cub3d->mlx.ptr,
+			SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	if (!cub3d->mlx.win)
 	{
 		mlx_destroy_display(cub3d->mlx.ptr);
 		free(cub3d->mlx.ptr);
 		return (1);
 	}
-	cub3d->mlx.buffer.ptr = mlx_new_image(cub3d->mlx.ptr, 800, 600);
+	cub3d->mlx.buffer.ptr = mlx_new_image(cub3d->mlx.ptr,
+			SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cub3d->mlx.buffer.ptr)
 	{
 		mlx_destroy_window(cub3d->mlx.ptr, cub3d->mlx.win);

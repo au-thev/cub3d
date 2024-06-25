@@ -6,12 +6,13 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:56:32 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/09 09:19:28 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 20:31:59 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdio.h>
+#include <limits.h>
 #include "cub3d.h"
 
 int	draw_raycast(t_cub3d *cub3d, t_draw *draw)
@@ -31,9 +32,11 @@ int	draw_raycast(t_cub3d *cub3d, t_draw *draw)
 		put_pixel(cub3d, cub3d->dda.current_x, y, draw->color);
 		y++;
 	}
-	vert_line(cub3d, cub3d->dda.current_x % 800, (int [2]){0, draw->start},
+	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH,
+		(int [2]){0, draw->start},
 		cub3d->level.color[1]);
-	vert_line(cub3d, cub3d->dda.current_x % 800, (int [2]){draw->end, 600},
+	vert_line(cub3d, cub3d->dda.current_x % SCREEN_WIDTH,
+		(int [2]){draw->end, SCREEN_HEIGHT},
 		cub3d->level.color[0]);
 	return (0);
 }
@@ -77,7 +80,7 @@ int	get_tex_alignement(t_cub3d *cub3d, t_draw *draw)
 			- draw->tex[X] - 1;
 	draw->step = 1.0 * cub3d->level.texture[draw->tex_side].size[1]
 		/ draw->line_height;
-	draw->tex_pos = (draw->start - 600 / 2 + draw->line_height / 2)
+	draw->tex_pos = (draw->start - SCREEN_HEIGHT / 2 + draw->line_height / 2)
 		* draw->step;
 	return (0);
 }
@@ -87,22 +90,22 @@ int	do_raycast(t_cub3d *cub3d)
 	t_draw	draw;
 	int		x;
 
-	x = 800;
+	x = SCREEN_WIDTH;
 	while (x-- > 0)
 	{
 		cub3d->dda.current_x = x;
 		cub3d->dda.rot_rad = cub3d->camera.yaw * M_PI / 180;
 		preload_dda_vars(cub3d);
 		get_distance(cub3d);
-		if (cub3d->dda.wall_dist == 0)
-			cub3d->dda.wall_dist = .1;
-		draw.line_height = (int)(400 / cub3d->dda.wall_dist);
-		draw.start = -draw.line_height / 2 + 600 / 2;
+		draw.line_height = (int)(SCREEN_HEIGHT / cub3d->dda.wall_dist);
+		if (draw.line_height < 0)
+			draw.line_height = INT_MAX;
+		draw.start = -draw.line_height / 2 + SCREEN_HEIGHT / 2;
 		if (draw.start < 0)
 			draw.start = 0;
-		draw.end = draw.line_height / 2 + 600 / 2;
-		if (draw.end >= 600)
-			draw.end = 600 - 1;
+		draw.end = draw.line_height / 2 + SCREEN_HEIGHT / 2;
+		if (draw.end >= SCREEN_HEIGHT)
+			draw.end = SCREEN_HEIGHT - 1;
 		get_tex_side(cub3d, &draw);
 		get_tex_alignement(cub3d, &draw);
 		draw_raycast(cub3d, &draw);
