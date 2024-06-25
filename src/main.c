@@ -6,22 +6,19 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 07:01:37 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 17:58:28 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/18 21:04:54 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <math.h>
 #include "cub3d.h"
+#include "libft.h"
 #include "mlx.h"
 
 int	loop(void *param)
 {
 	t_cub3d	*cub3d;
-	int		x;
-	int		ray;
 
-	x = 800;
 	cub3d = param;
 	keys_check(cub3d);
 	do_raycast(cub3d);
@@ -30,18 +27,34 @@ int	loop(void *param)
 	return (0);
 }
 
-int	mlx_start(t_cub3d *cub3d)
+int	mlx_produce(t_cub3d *cub3d)
 {
-	int	i;
-
 	cub3d->mlx.ptr = mlx_init();
 	if (!cub3d->mlx.ptr)
 		return (1);
 	cub3d->mlx.win = mlx_new_window(cub3d->mlx.ptr, 800, 600, "Cub3D");
 	if (!cub3d->mlx.win)
+	{
+		mlx_destroy_display(cub3d->mlx.ptr);
+		free(cub3d->mlx.ptr);
 		return (1);
+	}
 	cub3d->mlx.buffer.ptr = mlx_new_image(cub3d->mlx.ptr, 800, 600);
 	if (!cub3d->mlx.buffer.ptr)
+	{
+		mlx_destroy_window(cub3d->mlx.ptr, cub3d->mlx.win);
+		mlx_destroy_display(cub3d->mlx.ptr);
+		free(cub3d->mlx.ptr);
+		return (1);
+	}
+	return (0);
+}
+
+int	mlx_start(t_cub3d *cub3d)
+{
+	int	i;
+
+	if (mlx_produce(cub3d))
 		return (1);
 	cub3d->mlx.buffer.data = mlx_get_data_addr(cub3d->mlx.buffer.ptr,
 			&cub3d->mlx.buffer.bpp, &cub3d->mlx.buffer.sl,
@@ -67,7 +80,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	if (mlx_start(&cub3d))
+	{
+		ft_putstr_fd("Failed to initialize mlx!\n", STDERR_FILENO);
 		return (1);
+	}
 	i = 5;
 	while (i-- > 0)
 		cub3d.level.texture[i].loaded = 0;

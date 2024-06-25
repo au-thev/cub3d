@@ -6,7 +6,7 @@
 /*   By: coltcivers <coltcivers@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:42:38 by antheven          #+#    #+#             */
-/*   Updated: 2024/04/08 12:52:45 by coltcivers       ###   ########.fr       */
+/*   Updated: 2024/06/18 20:54:11 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	ft_putendl(char *s);
 void	ft_putnbr(int n);
 
 char	*ft_readline(int fd);
+char	*get_next_line(int fd);
 
 #endif
