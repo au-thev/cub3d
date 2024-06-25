@@ -12,26 +12,33 @@ parser_colors \
 raycaster \
 print_level \
 
-NB := $(words $(SRCS))
-CUR = 0
-SRC=$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
-OBJ=$(SRC:.c=.o)
-FLAGS=-Wall -Wextra -Werror -I inc -L libft -lft -L minilibx-linux -lmlx -lX11 -lXext -g3 -lm
-NAME=cub3D
+NB	:=	$(words $(SRCS))
+CUR	:=	0
 
-all: mlx libft $(NAME)
+SRC		:=	$(addsuffix .c, $(addprefix src/, $(addprefix ,$(SRCS))))
+OBJ		:=	$(SRC:.c=.o)
+DEP		:=	$(OBJ:.o=.d)
 
-$(NAME): $(OBJ)
-	cc -o $(NAME) $(OBJ) $(FLAGS)
+CFLAGS	:=	-Wall -Wextra -Werror -I inc -g3
+LDFLAGS	:=	-L libft -L minilibx-linux
+LDLIBS	:=	-lft -lmlx -lX11 -lXext -lm
+NAME	:=	cub3D
+
+all: $(NAME)
+
+$(NAME): $(OBJ) libft/libft.a minilibx-linux/libmlx.a
+	cc -o $(NAME) $(OBJ) $(LDFLAGS) $(LDLIBS)
 	@/bin/echo -e "\nBuilding binary [$(NAME)]"
 
+-include $(DEP)
+
 .c.o:
-	@cc -fPIC -c $< -o $@ -I inc -g3
+	@cc $(CFLAGS) -c -MMD -MP $< -o $@
 	$(eval CUR=$(shell echo $$(($(CUR)+1))))
 	@/bin/echo -ne "Compiling sources [$(shell echo "$(CUR)*100/$(NB)" | bc)%] $@            \r"
 
 clean:
-	@$(RM) -rf $(OBJ)
+	@$(RM) -rf $(OBJ) $(DEP)
 	@make -C minilibx-linux clean
 	@make -C libft clean
 	@echo Cleaning compiled files
@@ -41,18 +48,22 @@ fclean: clean
 	@make -C libft fclean
 	@echo Cleaning binary
 
-libft:
+re: fclean
+	@make -s all
+
+libft/libft.a:
 	@make -C libft
 
-mlx:
+minilibx-linux/libmlx.a:
 	@make -C minilibx-linux
 
 norm:
-	norminette libft
+	norminette libft/src/
+	norminette libft/include/
 	norminette src/
-
-re: fclean
-	@make -s all
+	norminette inc/cub3d.h
+	norminette inc/color.h
+	norminette inc/libft.h
 
 test: all
 	@echo Checking for missing params
@@ -100,4 +111,4 @@ test: all
 	@echo "\n[\033[0;32mTests Done.\033[0m]\n"
 	@read a
 
-.PHONY: libft
+.PHONY: test norm re fclean clean all libft
