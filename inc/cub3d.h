@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 19:57:07 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 17:48:48 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:54:19 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <fcntl.h>
 # include "libft.h"
 
-# define MOVE_RATIO	0.1
+# define SCREEN_WIDTH	1280
+# define SCREEN_HEIGHT	720
+# define MOVE_RATIO		0.1
 
 typedef struct s_cub3d	t_cub3d;
 typedef struct s_draw	t_draw;
@@ -69,7 +71,7 @@ struct s_cub3d
 			int		sl;
 			int		endian;
 			int		size[2];
-			char	loaded;
+			int		loaded;
 		}			texture[4];
 		int			color[2];
 		int			color_load[2];
@@ -98,7 +100,7 @@ struct s_draw
 {
 	int				start;
 	int				end;
-	char			tex_side;
+	int				tex_side;
 	int				tex[2];
 	double			tex_pos;
 	int				color;
@@ -106,7 +108,6 @@ struct s_draw
 	double			wall_x;
 	int				line_height;
 };
-
 
 void			put_pixel(t_cub3d *cub3d, int x, int y, int color);
 unsigned int	get_pixel(t_cub3d *cub3d, int x, int y, char facing);
@@ -121,13 +122,15 @@ int				do_raycast(t_cub3d *cub3d);
 
 int				load_level(t_cub3d *cub3d, char *path);
 int				flood_fill_start(t_cub3d *cub3d, int x, int y);
-int				parse_map(t_cub3d *cub3d, char *line, int fd);
+int				parse_map(t_cub3d *cub3d, t_list *map_line);
+int				decode_rgb_str(char *s);
 int				parse_params(t_cub3d *cub3d, char *line);
-int				check_params(t_cub3d *cub3d);
-void			check_for_player(t_cub3d *cub3d, char *line, int i);
+int				search_player(t_cub3d *cub3d);
 int				preload_dda_vars(t_cub3d *cub3d);
 int				get_distance(t_cub3d *cub3d);
 
-int				free_game(t_cub3d *cub3d);
+void			print_level(t_cub3d *cub3d);
+
+void			free_game(t_cub3d *cub3d);
 
 #endif

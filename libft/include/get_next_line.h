@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnguyen- <pnguyen-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:24:17 by pnguyen-          #+#    #+#             */
-/*   Updated: 2024/01/22 15:37:29 by pnguyen-         ###   ########.fr       */
+/*   Created: 2023/11/21 16:36:56 by pnguyen-          #+#    #+#             */
+/*   Updated: 2024/02/29 17:49:26 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_strncmp(char const s1[], char const s2[], size_t n)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 64
+# endif
+
+# if BUFFER_SIZE < 0
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 0
+# endif
+
+# include <stddef.h>
+
+typedef struct s_str
 {
-	if (n == 0)
-		return (0);
-	while (--n)
-	{
-		if (*s1 != *s2)
-			break ;
-		if (*s1 == '\0')
-			break ;
-		s1++;
-		s2++;
-	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
+	char	*data;
+	size_t	len;
+	size_t	size;
+}	t_str;
+
+#endif

@@ -6,111 +6,110 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 13:30:35 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 19:16:45 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/22 18:40:02 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
+#include "color.h"
 #include "cub3d.h"
 #include "mlx.h"
 
-static char	mapcol(char c)
+#define MAX_PARAMS	6
+
+static char	*goto_next_non_empty_line(int fd)
 {
-	char	form[100];
-	char	r;
+	char	*line;
+	char	*new_line;
 
-	ft_bzero(form, 100);
-	form['0'] = 32;
-	form['1'] = 31;
-	form['2'] = 0;
-	form['3'] = 0;
-	form['N'] = 33;
-	form['S'] = 33;
-	form['E'] = 33;
-	form['W'] = 33;
-	form[' '] = 33;
-	form['.'] = 32;
-	r = form[(int)c];
-	if (r == 0)
-		r = c;
-	return (r);
-}
-
-static char	get_map_char(char c)
-{
-	char	form[100];
-	char	r;
-
-	ft_bzero(form, 100);
-	form['0'] = ' ';
-	form['1'] = '#';
-	form['2'] = '2';
-	form['3'] = '3';
-	form['N'] = '^';
-	form['S'] = 'v';
-	form['E'] = '>';
-	form['W'] = '<';
-	form[' '] = ' ';
-	form['.'] = '~';
-	r = form[(int)c];
-	if (r == 0)
-		r = c;
-	return (r);
-}
-
-void	print_level(t_cub3d *cub3d)
-{
-	char		**map;
-	int			i;
-	size_t		j;
-
-	map = cub3d->level.map;
-	i = 0;
-	if (!map)
-		return ;
-	while (i < cub3d->level.map_height)
+	while (1)
 	{
-		printf("[\033[0;32mMAP\033[0m] (line \033[0;33m%02d\033[0m) (\033[0;33m\
-%03ld\033[0m), ", i, ft_strlen(map[i]));
-		j = 0;
-		while (j < ft_strlen(map[i]))
+		line = get_next_line(fd);
+		if (line == NULL)
+			return (NULL);
+		if (*line != '\n')
+			break ;
+		free(line);
+	}
+	new_line = ft_strchr(line, '\n');
+	if (new_line != NULL)
+		*new_line = '\0';
+	return (line);
+}
+
+static int	load_params(t_cub3d *cub3d, int fd)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	while (i < MAX_PARAMS)
+	{
+		line = goto_next_non_empty_line(fd);
+		if (line == NULL)
+			return (1);
+		if (parse_params(cub3d, line))
 		{
-			if (ft_isspace(map[i][j]))
-				map[i][j] = '0';
-			printf("\033[0;%dm%c", mapcol(map[i][j]), get_map_char(map[i][j]));
-			j++;
+			free(line);
+			return (1);
 		}
-		printf("\n");
+		free(line);
 		i++;
 	}
+	return (!(i == MAX_PARAMS));
+}
+
+static int	load_map(t_list **head, int fd)
+{
+	char	*line;
+	char	*new_line;
+	t_list	*node;
+
+	line = goto_next_non_empty_line(fd);
+	while (line != NULL)
+	{
+		node = ft_lstnew(line);
+		if (node == NULL)
+		{
+			perror(RED "load_map:ft_lstnew" RESET);
+			ft_lstclear(head, &free);
+			free(line);
+			return (1);
+		}
+		ft_lstadd_back(head, node);
+		line = get_next_line(fd);
+		new_line = ft_strchr(line, '\n');
+		if (new_line != NULL)
+			*new_line = '\0';
+	}
+	return (0);
 }
 
 int	load_level(t_cub3d *cub3d, char *path)
 {
-	int		fd;
-	char	*line;
-	int		res;
+	t_list		*map;
+	int			res;
+	int const	fd = open(path, O_RDONLY);
 
-	fd = open(path, O_RDONLY);
-	if (fd <= 0)
+	if (fd < 0)
 		return (1);
-	res = 0;
-	line = ft_readline(fd);
-	while (line)
+	if (load_params(cub3d, fd))
 	{
-		if (ft_strlen(line) > 0)
-		{
-			if (ft_atoi(line) == 0)
-				res += parse_params(cub3d, line);
-			if (ft_atoi(line) != 0)
-				res += parse_map(cub3d, line, fd);
-		}
-		free(line);
-		line = ft_readline(fd);
+		close(fd);
+		return (1);
 	}
-	free(line);
-	print_level(cub3d);
+	map = NULL;
+	res = load_map(&map, fd);
 	close(fd);
-	return (res > 0);
+	if (res)
+		return (1);
+	if (parse_map(cub3d, map))
+	{
+		ft_lstclear(&map, &free);
+		return (1);
+	}
+	ft_lstclear(&map, &free);
+	print_level(cub3d);
+	return (flood_fill_start(cub3d, cub3d->camera.x, cub3d->camera.y));
 }

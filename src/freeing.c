@@ -6,7 +6,7 @@
 /*   By: autheven <autheven@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 17:33:34 by autheven          #+#    #+#             */
-/*   Updated: 2024/06/17 19:03:14 by autheven         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:09:11 by pnguyen-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "cub3d.h"
 #include "mlx.h"
 
-int	free_game(t_cub3d *cub3d)
+void	free_game(t_cub3d *cub3d)
 {
 	int		i;
 	char	**ptr;

@@ -1,16 +1,16 @@
-SRCS	:=	main			\
-			dda				\
-			draw			\
-			freeing			\
-			keyboard		\
-			level			\
-			map				\
-			map_checker		\
-			move			\
-			parser			\
-			parser_colors	\
-			print_level		\
-			raycaster		\
+SRCS=main \
+dda \
+draw \
+freeing \
+keyboard \
+level \
+map_checker \
+map \
+move \
+parser \
+parser_colors \
+raycaster \
+print_level \
 
 NB	:=	$(words $(SRCS))
 CUR	:=	0
@@ -111,4 +111,4 @@ test: all
 	@echo "\n[\033[0;32mTests Done.\033[0m]\n"
 	@read a
 
-.PHONY: test norm re fclean clean all
+.PHONY: test norm re fclean clean all libft
